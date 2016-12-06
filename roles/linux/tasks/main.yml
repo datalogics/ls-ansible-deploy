@@ -1,0 +1,36 @@
+---
+- name: Upgrade all packages
+  yum: name=* state=latest
+
+- name: Install the 'Development tools' package group
+  yum: name="@Development Tools" state=present
+
+- name: Configure Elasticsearch YUM repository
+  yum_repository:
+    name: elasticsearch-1.7
+    description: Elasticsearch 1.7 CentOS repository
+    baseurl: http://packages.elastic.co/elasticsearch/1.7/centos
+    gpgkey: http://packages.elastic.co/GPG-KEY-elasticsearch
+    gpgcheck: yes
+
+- name: Install yum package dependencies
+  yum: name=cairo,elasticsearch,git,libffi-devel,nginx,openssl-devel,postgresql,postgresql-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip state=latest
+
+- name: Copy the nginx.conf file to the server
+  copy:
+    src: files/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    mode: 0644
+  become: yes
+
+- name: Make sure nginx is running and configured to start at boot
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Make sure elasticsearch is running and configured to start at boot
+  service:
+    name: elasticsearch
+    state: started
+    enabled: yes

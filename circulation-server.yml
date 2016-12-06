@@ -1,0 +1,28 @@
+- name: Provision AWS resources if absent
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  pre_tasks:
+    - include_vars: vars/circulation-settings.yml
+  roles:
+  - ec2_key
+  - ec2
+  - rds
+
+- name: Configure the operating system on the EC2 host
+  hosts: circulation-servers
+  remote_user: ec2-user
+  become: yes
+  pre_tasks:
+    - include_vars: vars/circulation-settings.yml
+  roles:
+  - linux
+
+- name: Deploy Simplified {{ simplye_role }} software and config
+  hosts: circulation-servers
+  remote_user: ec2-user
+  become: yes
+  pre_tasks:
+    - include_vars: vars/circulation-settings.yml
+  roles:
+  - simplye-circulation

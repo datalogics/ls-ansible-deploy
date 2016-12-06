@@ -1,0 +1,89 @@
+{
+    "default_notification_email_address" : "{{ admin_email }}",
+
+    "policies" : {
+
+		"holds" : "allow",
+    "languages" : {
+
+        "large_collections" : ["eng"],
+
+        "small_collections" : ["eng"]
+
+      },
+
+
+    "authentication": {
+        "providers": [
+            { "module": "api.mock_authentication",
+              "patrons": { "patron1": "password",
+                           "patron2": "password2" }
+            }
+        ]
+    }
+},
+    "integrations" : {
+
+		"Postgres" : {
+
+			"production_url" : "postgresql://{{ psql_username }}:{{ psql_password }}@{{ hostvars['localhost']['rds']['instance']['endpoint'] }}:5432/{{ psql_db_name }}"
+
+		},
+
+
+		"Elasticsearch" : {
+
+			"url" : "http://localhost:9200",
+
+			"works_index" : "circulation-works"
+		},
+
+    "Metadata Wrangler" : {
+
+        "url" : "http://metadata.alpha.librarysimplified.org/"
+
+      },
+
+      "Content Server" : {
+
+        "url" : "http://oacontent.alpha.librarysimplified.org/"
+
+      },
+
+      "Circulation Manager" : {
+
+        "url" : "http://{{ ansible_hostname }}"
+
+      },
+
+		"Overdrive" : {
+
+			"client_key" : "{{ od_client_key }}",
+
+			"client_secret" : "{{ od_client_secret }}",
+
+			"website_id" : "{{ od_website_id }}",
+
+			"library_id" : "{{ od_library_id }}",
+
+			"ils_name": "{{ od_ils_name }}",
+
+			"cname_url": "{{ od_cname_url }}",
+
+			"default_loan_period": "{{ od_default_loan_period }}"
+
+		},
+
+		"3M" : {
+
+			"library_id" : "{{ threem_library_id }}",
+
+			"account_id" : "{{ threem_account_id }}",
+
+			"account_key" : "{{ threem_account_key }}"
+
+		}
+
+    }
+
+}

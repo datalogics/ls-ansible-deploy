@@ -1,0 +1,69 @@
+---
+- name: Install virtualenv globally from pip
+  pip: name=virtualenv state=latest
+
+- name: Install virtualenvwrapper globally from pip
+  pip: name=virtualenvwrapper state=latest
+
+- name: Install textblob globally from pip
+  pip: name=virtualenvwrapper state=latest
+
+- name: Copy the SSH private key file to the server to allow GitHub access
+  copy:
+    src: "{{ git_ssh_priv_key }}"
+    dest: "~/.ssh/id_rsa"
+    mode: 0600
+
+- name: Create /var/www/{{ simplye_role }} directory
+  file:
+    path: "/var/www/{{ simplye_role }}"
+    state: directory
+    owner: nginx
+    group: ec2-user
+    mode: 0644
+
+- name: Clone "{{ simplye_repo }}" w/submodules
+  git:
+    repo: "{{ simplye_repo }}"
+    dest: "/var/www/{{ simplye_role }}"
+    accept_hostkey: true
+
+- name: Install python requirements from requirements.txt into a new python virtualenv
+  pip:
+    virtualenv: "/var/www/{{ simplye_role }}/env"
+    virtualenv_python: python2.7
+    virtualenv_command: virtualenv
+    requirements: "/var/www/{{ simplye_role }}/requirements.txt"
+  become: no
+
+- name: Write the config.json to the server
+  template:
+    src: templates/config.j2
+    dest: "/var/www/config.json"
+    owner: ec2-user
+    group: ec2-user
+    mode: 0666
+
+- name: Add configuration file location to python virtuanenv
+  lineinfile:
+    dest: "/var/www/{{ simplye_role }}/env/bin/activate"
+    line: "export SIMPLIFIED_CONFIGURATION_FILE=/var/www/config.json"
+  become: yes
+
+- name: Create nginx config file
+  copy:
+    src: files/circulation.conf
+    dest: /etc/nginx/conf.d/circulation.conf
+    mode: 0644
+  become: yes
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
+
+- name: Create uwsgi config file
+  copy:
+    src: files/uwsgi.ini
+    dest: "/var/www/circulation/uwsgi.ini"
+    mode: 0644
