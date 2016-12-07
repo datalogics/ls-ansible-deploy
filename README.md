@@ -16,7 +16,7 @@ Circulation Server
   - [ ] Create a dedicated EC2 subnet
 - [x] Provision RDS database instance
   - [x] PostgreSQL instance in RDS
-  - [ ] RDS security groups (AWS firewall)
+  - [x] Create RDS security group with PostgreSQL ports open to the EC2 private IP
   - [ ] RDS subnet
 - [x] Configure the Amazon Linux OS
   - [x] Install YUM package dependencies
