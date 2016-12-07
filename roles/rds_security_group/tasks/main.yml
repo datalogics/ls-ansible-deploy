@@ -1,0 +1,13 @@
+---
+- name: Create security group for RDS insance and open PostgreSQL port to the EC2 instance
+  ec2_group:
+    name: "RDS-{{ simplye_role }}-{{ simplye_instance_name }}"
+    description: "Firewall rules for the {{ simplye_role }}-{{ simplye_instance_name }} RDS instance"
+    region: "{{ aws_region }}"
+    rules:
+      - proto: tcp
+        from_port: 5432
+        to_port: 5432
+        cidr_ip: "{{ ec2_private_ip }}/32"
+  register: rds_sg
+- debug: var=rds_sg.group_id

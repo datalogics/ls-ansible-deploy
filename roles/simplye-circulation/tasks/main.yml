@@ -39,7 +39,6 @@
     virtualenv_command: virtualenv
     requirements: "/var/www/{{ simplye_role }}/requirements.txt"
 
-
 - name: Write the config.json to the server
   template:
     src: templates/config.j2

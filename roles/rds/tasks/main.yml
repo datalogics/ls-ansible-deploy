@@ -18,7 +18,7 @@
     db_engine: "{{ rds_db_engine }}"
     size: "{{ rds_size }}"
     subnet: "{{ rds_subnet }}"
-    vpc_security_groups: "{{ rds_security_groups }}"
+    vpc_security_groups: "{{ rds_sg.group_id }}"
     multi_zone: no
     port: 5432
 

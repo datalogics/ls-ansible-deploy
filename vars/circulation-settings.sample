@@ -24,7 +24,6 @@ rds_instance_type: "db.t2.micro"
 rds_db_engine: "postgres"
 rds_size: 100
 rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
-rds_security_groups: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_group_module.html
 
 psql_db_name: "scripts"
 psql_username: (REQUIRED)
