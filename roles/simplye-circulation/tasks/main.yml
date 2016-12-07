@@ -2,11 +2,14 @@
 - name: Install virtualenv globally from pip
   pip: name=virtualenv state=latest
 
+
 - name: Install virtualenvwrapper globally from pip
   pip: name=virtualenvwrapper state=latest
 
+
 - name: Install textblob globally from pip
   pip: name=virtualenvwrapper state=latest
+
 
 - name: Copy the SSH private key file to the server to allow GitHub access
   copy:
@@ -18,9 +21,10 @@
   file:
     path: "/var/www/{{ simplye_role }}"
     state: directory
-    owner: nginx
+    owner: ec2-user
     group: ec2-user
-    mode: 0644
+    mode: 0755
+  become: yes
 
 - name: Clone "{{ simplye_repo }}" w/submodules
   git:
@@ -34,7 +38,7 @@
     virtualenv_python: python2.7
     virtualenv_command: virtualenv
     requirements: "/var/www/{{ simplye_role }}/requirements.txt"
-  become: no
+
 
 - name: Write the config.json to the server
   template:

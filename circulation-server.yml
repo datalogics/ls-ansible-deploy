@@ -21,7 +21,7 @@
 - name: Deploy Simplified {{ simplye_role }} software and config
   hosts: circulation-servers
   remote_user: ec2-user
-  become: yes
+  become: no
   pre_tasks:
     - include_vars: vars/circulation-settings.yml
   roles:
