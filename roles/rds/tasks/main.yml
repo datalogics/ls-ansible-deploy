@@ -29,11 +29,3 @@
   register: rds
 
 - debug: msg="The db endpoint is {{ rds.instance.endpoint }}"
-
-# - name: Get facts about RDS instance
-#   local_action:
-#     module: rds
-#     command: facts
-#     region: "{{ aws_region }}"
-#     instance_name: "{{ simplye_role }}-{{ simplye_instance_name }}"
-#   register: rds
