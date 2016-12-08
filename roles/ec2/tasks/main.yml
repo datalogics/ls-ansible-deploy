@@ -11,7 +11,7 @@
       Name: "{{ simplye_role }}-{{ simplye_instance_name }}"
     instance_tags: '{"Name":"{{ simplye_role }}-{{ simplye_instance_name }}","Type":"{{ simplye_role }}","Environment":"{{ simplye_environment }}"}'
     key_name: "{{ simplye_instance_name }}"
-    group_id: "{{ ec2_security_group }}"
+    group_id: "{{ ec2_sg.group_id }}"
     image: "{{ ec2_image }}"
     vpc_subnet_id: "{{ ec2_subnet_ids|random }}"
     assign_public_ip: yes

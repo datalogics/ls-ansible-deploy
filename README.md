@@ -12,7 +12,7 @@ Circulation Server
   - [x] Provision EC2 server(s)
   - [x] Provision and EC2 SSH key pair
   - [ ] Create a dedicated AWS VPC (vitrual private cloud) for AWS networking
-  - [ ] Create a dedicated EC2 security groups (AWS firewall)
+  - [x] Create a dedicated EC2 security group to firewall the EC2 instance
   - [ ] Create a dedicated EC2 subnet
 - [x] Provision RDS database instance
   - [x] PostgreSQL instance in RDS
@@ -55,8 +55,7 @@ The public IP of your new EC2 instance will serve a Libary Simplified circulatio
 
 The following could be automated in the future, but for now they must be created by hand prior to running the playbook:
 - AWS subnet for EC2 instance
-- AWS Security Group for EC2 instance (AWS firewall)
-- AWS Security Group for RDS instance (AWS firewall)
+
 
 
 ## Installation

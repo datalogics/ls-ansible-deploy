@@ -1,5 +1,6 @@
-
-git_ssh_priv_key: (REQUIRED) # e.g. "~/.ssh/id_rsa"
+# Ansible control machine
+admin_ip: 160.94.15.140
+git_ssh_priv_key: ~/.ssh/id_rsa
 
 # SimplyE instance
 admin_email: (REQUIRED)

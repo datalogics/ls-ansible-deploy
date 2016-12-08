@@ -5,6 +5,7 @@
   pre_tasks:
     - include_vars: vars/circulation-settings.yml
   roles:
+  - ec2_security_group
   - ec2_key
   - ec2
   - rds_security_group
