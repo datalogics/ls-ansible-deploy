@@ -1,5 +1,5 @@
 # Ansible control machine
-admin_ip: 160.94.15.140
+admin_ip: (REQUIRED) # e.g. your local public IP
 git_ssh_priv_key: ~/.ssh/id_rsa
 
 # SimplyE instance
@@ -17,7 +17,6 @@ aws_region: "us-west-2"
 ec2_instance_type: "t2.micro"
 ec2_image: "ami-b04e92d0"
 ec2_volume_size: 32
-ec2_security_group: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_group_module.html
 ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
 
 # AWS RDS & PostgreSQL
