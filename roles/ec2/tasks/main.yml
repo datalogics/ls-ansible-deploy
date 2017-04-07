@@ -5,25 +5,27 @@
     region: "{{ aws_region }}"
   register: ec2_key
 
-- name: Save private key to local admin's .ssh directory
+- name: Save private key to local admins .ssh directory
   copy:
     content: "{{ ec2_key.key.private_key }}"
     dest: "~/.ssh/{{ simplye_instance_name }}.pem"
     mode: 0600
   when: ec2_key.changed
 
-- name: Create security group for EC2 insance and open SSH port to the ansible control machine
-  ec2_group:
-    name: "EC2-{{ simplye_role }}-{{ simplye_instance_name }}"
-    description: "Firewall rules for the {{ simplye_role }}-{{ simplye_instance_name }} RDS instance"
-    region: "{{ aws_region }}"
-    rules:
-      - proto: tcp
-        from_port: 22
-        to_port: 22
-        cidr_ip: "{{ admin_ip }}/32"
-  register: ec2_sg
-- debug: var=ec2_sg.group_id
+# This is commented out for now because the security role it creates doesn't allow the server to
+# go out and get package updates/new packages. The security role and groupID needs to be created manually.
+#- name: Create security group for EC2 insance and open SSH port to the ansible control machine
+#  ec2_group:
+#    name: "EC2-{{ simplye_role }}-{{ simplye_instance_name }}"
+#    description: "Firewall rules for the {{ simplye_role }}-{{ simplye_instance_name }} RDS instance"
+#    region: "{{ aws_region }}"
+#    rules:
+#      - proto: tcp
+#        from_port: 22
+#        to_port: 22
+#        cidr_ip: "{{ admin_ip }}/32"
+#  register: ec2_sg
+#- debug: var=ec2_sg.group_id
 
 - name: Create a new server instance in AWS EC2 if none exist with tag "{{ simplye_role }}-{{ simplye_instance_name }}"
   local_action:
@@ -37,7 +39,7 @@
       Name: "{{ simplye_role }}-{{ simplye_instance_name }}"
     instance_tags: '{"Name":"{{ simplye_role }}-{{ simplye_instance_name }}","Type":"{{ simplye_role }}","Environment":"{{ simplye_environment }}"}'
     key_name: "{{ simplye_instance_name }}"
-    group_id: "{{ ec2_sg.group_id }}"
+    group_id: "sg-d0b578ab"
     image: "{{ ec2_image }}"
     vpc_subnet_id: "{{ ec2_subnet_ids|random }}"
     assign_public_ip: yes
