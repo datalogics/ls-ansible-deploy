@@ -8,7 +8,18 @@ simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
 simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 
+auth_server: (REQUIRED)
+auth_port: (REQUIRED)
+auth_username: (REQUIRED)
+auth_password: (REQUIRED)
+auth_location: (REQUIRED)
+auth_separator: (REQUIRED)
+
 simplye_repo: "git@github.com:NYPL-Simplified/circulation.git"
+
+# Docker information
+docker_repo : ""
+docker_tag : ""
 
 # AWS shared
 aws_region: "us-west-2"
@@ -29,6 +40,10 @@ psql_db_name: "scripts"
 psql_username: (REQUIRED)
 psql_password: (REQUIRED)
 
+# Docker
+docker_image: (REQUIRED)
+docker_tag: latest
+
 # Vendor vars
 #############
 
@@ -45,3 +60,9 @@ od_default_loan_period: (REQUIRED)
 threem_library_id: (REQUIRED)
 threem_account_id: (REQUIRED)
 threem_account_key : (REQUIRED)
+
+# Axis360
+axis_username: (REQUIRED)
+axis_password: (REQUIRED)
+axis_library_id: (REQUIRED)
+axis_qa_prod: (REQUIRED)
