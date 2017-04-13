@@ -1,15 +1,15 @@
 ---
 - name: Install virtualenv globally from pip
   pip: name=virtualenv state=latest
-
+  sudo: yes
 
 - name: Install virtualenvwrapper globally from pip
   pip: name=virtualenvwrapper state=latest
-
+  sudo: yes
 
 - name: Install textblob globally from pip
   pip: name=virtualenvwrapper state=latest
-
+  sudo: yes
 
 - name: Copy the SSH private key file to the server to allow GitHub access
   copy:
