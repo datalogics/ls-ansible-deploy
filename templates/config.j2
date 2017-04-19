@@ -17,11 +17,11 @@
         }
       ]
     }
-},
-    "integrations" : {
-      "Postgres" : {
-        "production_url" : "postgresql://{{ psql_username }}:{{ psql_password }}@{{ hostvars['localhost']['rds']['instance']['endpoint'] }}:5432/{{ psql_db_name }}"
-      },
+  },
+  "integrations" : {
+    "Postgres" : {
+      "production_url" : "postgresql://{{ psql_username }}:{{ psql_password }}@{{ hostvars['localhost']['rds']['instance']['endpoint'] }}:5432/{{ psql_db_name }}"
+    },
     "Elasticsearch" : {
       "url" : "http://localhost:9200",
       "works_index" : "circulation-works"
@@ -48,11 +48,12 @@
       "library_id" : "{{ threem_library_id }}",
       "account_id" : "{{ threem_account_id }}",
       "account_key" : "{{ threem_account_key }}"
-    }
+    },
     "Axis 360" : {
       "username" : "{{ axis_username }}",
       "password" : "{{ axis_password }}",
       "library_id" : "{{ axis_library_id }}",
       "server" : "{{ axis_qa_prod }}"
+    }
   }
 }

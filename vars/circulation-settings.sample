@@ -8,30 +8,35 @@ simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
 simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 
-auth_server: (REQUIRED)
-auth_port: (REQUIRED)
-auth_username: (REQUIRED)
-auth_password: (REQUIRED)
-auth_location: (REQUIRED)
-auth_separator: (REQUIRED)
+auth_server: ""
+auth_port: ""
+auth_username: ""
+auth_password: ""
+auth_location: ""
+auth_separator: ""
 
 simplye_repo: "git@github.com:NYPL-Simplified/circulation.git"
 
 # Docker information
-docker_repo : ""
-docker_tag : ""
+docker_scripts: "nypl/circ-scripts"
+docker_scripts_tag : "latest"
+docker_deploy: "nypl/circ-deploy"
+docker_deploy_tag: "latest"
+
+initialize_db: true # this should be true only when using this database and Elasticsearch instance for the first time
 
 # AWS shared
 aws_region: "us-west-2"
 
 # AWS EC2
-ec2_instance_type: "t2.micro"
-ec2_image: "ami-b04e92d0"
+ec2_instance_type: "t2.large"
+ec2_image: "ami-8ca83fec"
 ec2_volume_size: 32
 ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
+# until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces
 
 # AWS RDS & PostgreSQL
-rds_instance_type: "db.t2.micro"
+rds_instance_type: "db.t2.medium"
 rds_db_engine: "postgres"
 rds_size: 100
 rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
@@ -39,10 +44,6 @@ rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/e
 psql_db_name: "scripts"
 psql_username: (REQUIRED)
 psql_password: (REQUIRED)
-
-# Docker
-docker_image: (REQUIRED)
-docker_tag: latest
 
 # Vendor vars
 #############

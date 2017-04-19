@@ -14,7 +14,17 @@
     gpgcheck: yes
 
 - name: Install yum package dependencies
-  yum: name=cairo,elasticsearch,git,libffi-devel,nginx,openssl-devel,postgresql,postgresql-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip state=latest
+  yum: name=cairo,elasticsearch,git,libffi-devel,nginx,openssl-devel,postgresql,postgresql-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip,docker state=latest
+
+- name: Install docker-py globally from pip
+  pip: name=docker-py state=latest
+  sudo: yes
+
+- name: Add ec2-user to Docker group
+  user:
+    name: ec2-user
+    groups: docker
+    append: yes
 
 - name: Copy the nginx.conf file to the server
   copy:
@@ -32,5 +42,11 @@
 - name: Make sure elasticsearch is running and configured to start at boot
   service:
     name: elasticsearch
+    state: started
+    enabled: yes
+
+- name: Make sure docker is running and configured to start at boot
+  service:
+    name: docker
     state: started
     enabled: yes

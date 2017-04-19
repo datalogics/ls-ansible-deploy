@@ -24,4 +24,4 @@
   pre_tasks:
     - include_vars: vars/circulation-settings.yml
   roles:
-  - simplye-circulation
+  - simplye-docker
