@@ -34,12 +34,14 @@ ec2_image: "ami-8ca83fec"
 ec2_volume_size: 32
 ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
 # until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces
+# it should be a list in the form ["subnet1","subnet2","subnet3"]
 
 # AWS RDS & PostgreSQL
 rds_instance_type: "db.t2.medium"
 rds_db_engine: "postgres"
 rds_size: 100
 rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
+# this can simply be "default" for now
 
 psql_db_name: "scripts"
 psql_username: (REQUIRED)
