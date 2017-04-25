@@ -5,7 +5,7 @@
     region: "{{ aws_region }}"
   register: ec2_key
 
-- name: Save private key to local admin's .ssh directory
+- name: Save private key to local admins .ssh directory
   copy:
     content: "{{ ec2_key.key.private_key }}"
     dest: "~/.ssh/{{ simplye_instance_name }}.pem"
@@ -18,10 +18,15 @@
     description: "Firewall rules for the {{ simplye_role }}-{{ simplye_instance_name }} RDS instance"
     region: "{{ aws_region }}"
     rules:
-      - proto: tcp
-        from_port: 22
-        to_port: 22
-        cidr_ip: "{{ admin_ip }}/32"
+      - proto: all
+        from_port: all
+        to_port: all
+        cidr_ip: 0.0.0.0/0
+    rules_egress:
+      - proto: all
+        from_port: all
+        to_port: all
+        cidr_ip: 0.0.0.0/0
   register: ec2_sg
 - debug: var=ec2_sg.group_id
 
