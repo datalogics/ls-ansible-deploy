@@ -6,3 +6,10 @@
     owner: ec2-user
     group: ec2-user
     mode: 0666
+
+- local_action:
+    module: ec2
+    region: "{{ aws_region }}"
+    instance_tags:
+      Name: "{{ simplye_role }}-{{ simplye_instance_name }}"
+    state: restarted

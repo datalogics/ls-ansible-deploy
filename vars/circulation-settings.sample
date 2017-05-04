@@ -1,15 +1,15 @@
 # Ansible control machine
-admin_ip: (REQUIRED) # e.g. your local public IP
+admin_ip: 38.98.172.37 # e.g. your local public IP
 git_ssh_priv_key: ~/.ssh/id_rsa
 
 # SimplyE instance
-admin_email: (REQUIRED)
+admin_email: "dans@datalogics.com"
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
-simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
+simplye_instance_name: "DansCM" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 
 auth_server: ""
-auth_port: ""
+auth_port: "8080"
 auth_username: ""
 auth_password: ""
 auth_location: ""
@@ -18,7 +18,7 @@ auth_separator: ""
 simplye_repo: "git@github.com:NYPL-Simplified/circulation.git"
 
 # Docker information
-docker_scripts: "nypl/circ-scripts"
+docker_scripts: "nypl/circ-scripts" 
 docker_scripts_tag : "latest"
 docker_deploy: "nypl/circ-deploy"
 docker_deploy_tag: "latest"
@@ -27,45 +27,43 @@ initialize_db: true # this should be true only when using this database and Elas
 
 # AWS shared
 aws_region: "us-west-2"
+aws_zones: ["us-west-2a","us-west-2b","us-west-2c"]
 
 # AWS EC2
-ec2_instance_type: "t2.large"
+ec2_instance_type: "t2.medium"
 ec2_image: "ami-62d35c02"
 ec2_volume_size: 32
-ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
-# until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces
-# it should be a list in the form ["subnet1","subnet2","subnet3"]
+ec2_subnet_ids: ["subnet-df64b2a8","subnet-a05ea9f9","subnet-17e75472"] # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
 
 # AWS RDS & PostgreSQL
 rds_instance_type: "db.t2.medium"
 rds_db_engine: "postgres"
 rds_size: 100
-rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
-# this can simply be "default" for now
+rds_subnet: "default" # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
 
-psql_db_name: "scripts"
-psql_username: (REQUIRED)
-psql_password: (REQUIRED)
+psql_db_name: "circulation"
+psql_username: "simplified"
+psql_password: "password"
 
 # Vendor vars
 #############
 
 # Overdrive
-od_client_key: (REQUIRED)
-od_client_secret: (REQUIRED)
-od_website_id: (REQUIRED)
-od_library_id: (REQUIRED)
-od_ils_name: (REQUIRED)
-od_cname_url: (REQUIRED)
-od_default_loan_period: (REQUIRED)
+od_client_key: ""
+od_client_secret: ""
+od_website_id: ""
+od_library_id: ""
+od_ils_name: ""
+od_cname_url: ""
+od_default_loan_period: ""
 
 # 3M
-threem_library_id: (REQUIRED)
-threem_account_id: (REQUIRED)
-threem_account_key : (REQUIRED)
+threem_library_id: ""
+threem_account_id: ""
+threem_account_key : ""
 
 # Axis360
-axis_username: (REQUIRED)
-axis_password: (REQUIRED)
-axis_library_id: (REQUIRED)
-axis_qa_prod: (REQUIRED)
+axis_username: ""
+axis_password: ""
+axis_library_id: ""
+axis_qa_prod: ""

@@ -73,10 +73,6 @@
     - "{{ ec2.instances }}"
     - "{{ ec2.tagged_instances }}"
 
-- name: Check SSH to make sure the instance boots
-  wait_for: host={{ item.public_ip }} port=22 delay=60 timeout=320 state=started
-  with_items: "{{ ec2.instances }}"
-
 - name: Add instance ID as playbook fact
   set_fact:
     ec2_instance_id: "{{ item.id }}"
@@ -90,6 +86,9 @@
     device_id: "{{ ec2_instance_id  }}"
   register: eip
 
+- debug: var=item
+  with_items: "{{ ec2.instances }}"
+
 - name: Add instance info as playbook facts
   set_fact:
     ec2_ip: "{{ eip.public_ip }}"
@@ -97,5 +96,9 @@
   with_items:
     - "{{ ec2.instances }}"
     - "{{ ec2.tagged_instances }}"
+
+- name: Check SSH to make sure the instance boots
+  wait_for: host={{ item.public_ip }} port=22 delay=60 timeout=320 state=started
+  with_items: "{{ ec2.instances }}"
 
 - debug: var=ec2_private_ip

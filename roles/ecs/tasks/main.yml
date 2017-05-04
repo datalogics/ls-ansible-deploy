@@ -6,7 +6,7 @@
       cpu: 512 
       essential: true
       image: "{{ docker_deploy }}:{{ docker_deploy_tag }}"
-      memoryReservation: 1500
+      memoryReservation: 256
       portMappings:
       - containerPort: 80
         hostPort: 80
@@ -14,17 +14,17 @@
       - containerPath: "/etc/circulation/config.json"
         sourceVolume: CM-config
     - name: circ-scripts
-      cpu: 512 
+      cpu: 300
       essential: true
       image: "{{ docker_scripts }}:{{ docker_scripts_tag }}"
-      memoryReservation: 250
+      memoryReservation: 256
       mountPoints:
       - containerPath: "/etc/circulation/config.json"
         sourceVolume: CM-config
     - name: elasticsearch
-      cpu: 512
+      cpu: 800
       image: "docker.elastic.co/elasticsearch/elasticsearch:5.3.2"
-      memoryReservation: 2000 
+      memoryReservation: 512
       portMappings:
       - containerPort: 9200
         hostPort: 9200
