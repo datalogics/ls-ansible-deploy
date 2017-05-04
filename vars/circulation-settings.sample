@@ -30,7 +30,7 @@ aws_region: "us-west-2"
 
 # AWS EC2
 ec2_instance_type: "t2.large"
-ec2_image: "ami-8ca83fec"
+ec2_image: "ami-62d35c02"
 ec2_volume_size: 32
 ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
 # until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces

@@ -1,0 +1,64 @@
+---
+- name: Create ECS task definition
+  ecs_taskdefinition:
+    containers:
+    - name: circ-deploy
+      cpu: 512 
+      essential: true
+      image: "{{ docker_deploy }}:{{ docker_deploy_tag }}"
+      memoryReservation: 1500
+      portMappings:
+      - containerPort: 80
+        hostPort: 80
+      mountPoints:
+      - containerPath: "/etc/circulation/config.json"
+        sourceVolume: CM-config
+    - name: circ-scripts
+      cpu: 512 
+      essential: true
+      image: "{{ docker_scripts }}:{{ docker_scripts_tag }}"
+      memoryReservation: 250
+      mountPoints:
+      - containerPath: "/etc/circulation/config.json"
+        sourceVolume: CM-config
+    - name: elasticsearch
+      cpu: 512
+      image: "docker.elastic.co/elasticsearch/elasticsearch:5.3.2"
+      memoryReservation: 2000 
+      portMappings:
+      - containerPort: 9200
+        hostPort: 9200
+      ulimits:
+      - name: "memlock"
+        softLimit: -1
+        hardLimit: -1
+      - name: "nofile"
+        softLimit: 65536
+        hardLimit: 65536
+    volumes:
+    - name: CM-config
+      host: 
+        sourcePath: "/home/ec2-user/config.json"
+    state: present
+    region: "{{ aws_region }}"
+    family: "{{ simplye_role }}-{{ simplye_instance_name }}-tdef"
+  register: task_def
+
+- name: Create ECS task
+  ecs_task:
+    region: "{{ aws_region }}"
+    cluster: "{{ simplye_role }}-{{ simplye_instance_name }}-ecs"
+    operation: run
+    task_definition: "{{ simplye_role }}-{{ simplye_instance_name }}-tdef"
+    count: 1
+    started_by: ansible_user
+  register: task_output
+
+- name: Create ECS service
+  ecs_service:
+    name: "{{ simplye_role }}-{{ simplye_instance_name }}-srv"
+    region: "{{ aws_region }}"
+    state: present
+    cluster: "{{ simplye_role }}-{{ simplye_instance_name }}-ecs"
+    desired_count: 1
+    task_definition: "{{ simplye_role }}-{{ simplye_instance_name }}-tdef"

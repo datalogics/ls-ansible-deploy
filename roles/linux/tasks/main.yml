@@ -1,10 +1,4 @@
 ---
-- name: Upgrade all packages
-  yum: name=* state=latest
-
-- name: Install the 'Development tools' package group
-  yum: name="@Development Tools" state=present
-
 - name: Configure Elasticsearch YUM repository
   yum_repository:
     name: elasticsearch-1.7
@@ -14,39 +8,10 @@
     gpgcheck: yes
 
 - name: Install yum package dependencies
-  yum: name=cairo,elasticsearch,git,libffi-devel,nginx,openssl-devel,postgresql,postgresql-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip,docker state=latest
-
-- name: Install docker-py globally from pip
-  pip: name=docker-py state=latest
-  sudo: yes
-
-- name: Add ec2-user to Docker group
-  user:
-    name: ec2-user
-    groups: docker
-    append: yes
-
-- name: Copy the nginx.conf file to the server
-  copy:
-    src: files/nginx.conf
-    dest: /etc/nginx/nginx.conf
-    mode: 0644
-  become: yes
-
-- name: Make sure nginx is running and configured to start at boot
-  service:
-    name: nginx
-    state: started
-    enabled: yes
+  yum: name=elasticsearch,python27,python27-devel,python-nose,python-pip,docker state=latest
 
 - name: Make sure elasticsearch is running and configured to start at boot
   service:
     name: elasticsearch
-    state: started
-    enabled: yes
-
-- name: Make sure docker is running and configured to start at boot
-  service:
-    name: docker
     state: started
     enabled: yes
