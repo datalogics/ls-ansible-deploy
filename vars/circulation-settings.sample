@@ -9,7 +9,7 @@ simplye_instance_name: "DansCM" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 
 auth_server: ""
-auth_port: "8080"
+auth_port: "80"
 auth_username: ""
 auth_password: ""
 auth_location: ""
