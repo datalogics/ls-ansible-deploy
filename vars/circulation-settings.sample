@@ -5,7 +5,7 @@ git_ssh_priv_key: ~/.ssh/id_rsa
 # SimplyE instance
 admin_email: "dans@datalogics.com"
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
-simplye_instance_name: "DansCM" # e.g. "FooPublicLibrary"
+simplye_instance_name: "DansCM2" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 
 auth_server: ""
@@ -20,8 +20,8 @@ simplye_repo: "git@github.com:NYPL-Simplified/circulation.git"
 # Docker information
 docker_scripts: "nypl/circ-scripts" 
 docker_scripts_tag : "latest"
-docker_deploy: "nypl/circ-deploy"
-docker_deploy_tag: "health-check-test"
+docker_deploy: "datalogics/circ-deploy"
+docker_deploy_tag: "latest"
 
 initialize_db: "true" # this should be true only when using this database and Elasticsearch instance for the first time
 
