@@ -1,4 +1,10 @@
 ---
+- name: Upgrade all packages
+  yum: name=* state=latest
+
+- name: Install the 'Development tools' package group
+  yum: name="@Development Tools" state=present
+
 - name: Configure Elasticsearch YUM repository
   yum_repository:
     name: elasticsearch-1.7
@@ -8,7 +14,7 @@
     gpgcheck: yes
 
 - name: Install yum package dependencies
-  yum: name=elasticsearch,python27,python27-devel,python-nose,python-pip,docker state=latest
+  yum: name=java-1.8.0-openjdk.x86_64,cairo,elasticsearch,libffi-devel,openssl-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip state=latest
 
 - name: Make sure elasticsearch is running and configured to start at boot
   service:

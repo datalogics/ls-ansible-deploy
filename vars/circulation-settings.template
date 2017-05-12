@@ -23,7 +23,7 @@ docker_scripts_tag : "latest"
 docker_deploy: "nypl/circ-deploy"
 docker_deploy_tag: "latest"
 
-initialize_db: true # this should be true only when using this database and Elasticsearch instance for the first time
+initialize_db: "true" # this should be true only when using this database and Elasticsearch instance for the first time
 
 # AWS shared
 aws_region: "us-west-2"
