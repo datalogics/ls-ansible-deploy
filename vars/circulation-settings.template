@@ -7,6 +7,7 @@ admin_email: (REQUIRED)
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
 simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
+simplye_hostname: (REQUIRED) # e.g. "http://cm.library.com" or "http://111.222.333.444"
 
 auth_server: ""
 auth_port: "80"

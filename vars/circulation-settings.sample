@@ -7,6 +7,7 @@ admin_email: "dans@datalogics.com"
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
 simplye_instance_name: "DansCM2" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
+simplye_hostname: "http://library.datalogics.com"
 
 auth_server: ""
 auth_port: "80"
