@@ -9,6 +9,7 @@ simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 simplye_hostname: (REQUIRED) # e.g. "http://cm.library.com" or "http://111.222.333.444"
 
+# Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
 auth_server: ""
 auth_port: "80"
 auth_username: ""
@@ -60,7 +61,7 @@ od_ils_name: (REQUIRED)
 od_cname_url: (REQUIRED)
 od_default_loan_period: (REQUIRED)
 
-# 3M
+# 3M/Cloud Library
 threem_library_id: (REQUIRED)
 threem_account_id: (REQUIRED)
 threem_account_key : (REQUIRED)

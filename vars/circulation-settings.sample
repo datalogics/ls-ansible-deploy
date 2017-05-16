@@ -9,6 +9,7 @@ simplye_instance_name: "DansCM2" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
 simplye_hostname: "http://library.datalogics.com"
 
+# Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
 auth_server: ""
 auth_port: "80"
 auth_username: ""
@@ -58,7 +59,7 @@ od_ils_name: ""
 od_cname_url: ""
 od_default_loan_period: ""
 
-# 3M
+# 3M/Cloud Library
 threem_library_id: ""
 threem_account_id: ""
 threem_account_key : ""
