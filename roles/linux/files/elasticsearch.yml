@@ -1,0 +1,4 @@
+cluster.name: LibrarySimplified
+node.name: ${HOSTNAME}
+network.host: ${HOSTNAME}
+http.port: 9200

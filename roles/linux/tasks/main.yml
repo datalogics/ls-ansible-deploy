@@ -16,6 +16,13 @@
 - name: Install yum package dependencies
   yum: name=java-1.8.0-openjdk.x86_64,cairo,elasticsearch,libffi-devel,openssl-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip state=latest
 
+- name: Copy the elasticsearch.yml file to the server
+  copy:
+    src: files/elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml
+    mode: 0644
+  become: yes
+
 - name: Make sure elasticsearch is running and configured to start at boot
   service:
     name: elasticsearch
