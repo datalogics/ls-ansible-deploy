@@ -7,7 +7,9 @@ admin_email: (REQUIRED)
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
 simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
+simplye_hostname: (REQUIRED) # e.g. "http://cm.library.com" or "http://111.222.333.444"
 
+# Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
 auth_server: ""
 auth_port: "80"
 auth_username: ""
@@ -23,7 +25,7 @@ docker_scripts_tag : "latest"
 docker_deploy: "nypl/circ-deploy"
 docker_deploy_tag: "latest"
 
-initialize_db: true # this should be true only when using this database and Elasticsearch instance for the first time
+initialize_db: "true" # this should be true only when using this database and Elasticsearch instance for the first time
 
 # AWS shared
 aws_region: "us-west-2"
@@ -59,7 +61,7 @@ od_ils_name: (REQUIRED)
 od_cname_url: (REQUIRED)
 od_default_loan_period: (REQUIRED)
 
-# 3M
+# 3M/Cloud Library
 threem_library_id: (REQUIRED)
 threem_account_id: (REQUIRED)
 threem_account_key : (REQUIRED)

@@ -3,11 +3,13 @@ admin_ip: 38.98.172.37 # e.g. your local public IP
 git_ssh_priv_key: ~/.ssh/id_rsa
 
 # SimplyE instance
-admin_email: "dans@datalogics.com"
+admin_email: "admin@datalogics.com"
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
-simplye_instance_name: "DansCM" # e.g. "FooPublicLibrary"
+simplye_instance_name: "PublicLibrary" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
+simplye_hostname: "http://library.datalogics.com" # e.g. "http://cm.library.com" or "http://111.222.333.444"
 
+# Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
 auth_server: ""
 auth_port: "80"
 auth_username: ""
@@ -19,11 +21,11 @@ simplye_repo: "git@github.com:NYPL-Simplified/circulation.git"
 
 # Docker information
 docker_scripts: "nypl/circ-scripts" 
-docker_scripts_tag : "latest"
+docker_scripts_tag : "1.1.22"
 docker_deploy: "nypl/circ-deploy"
-docker_deploy_tag: "latest"
+docker_deploy_tag: "1.1.22"
 
-initialize_db: true # this should be true only when using this database and Elasticsearch instance for the first time
+initialize_db: "true" # this should be true only when using this database and Elasticsearch instance for the first time
 
 # AWS shared
 aws_region: "us-west-2"
@@ -57,7 +59,7 @@ od_ils_name: ""
 od_cname_url: ""
 od_default_loan_period: ""
 
-# 3M
+# 3M/Cloud Library
 threem_library_id: ""
 threem_account_id: ""
 threem_account_key : ""
