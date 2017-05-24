@@ -69,3 +69,8 @@ axis_username: ""
 axis_password: ""
 axis_library_id: ""
 axis_qa_prod: ""
+
+# OneClick
+oneclick_libid: ""
+oneclick_token: ""
+oneclick_logn_length: ""
