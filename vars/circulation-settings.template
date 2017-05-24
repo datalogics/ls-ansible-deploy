@@ -71,3 +71,8 @@ axis_username: (REQUIRED)
 axis_password: (REQUIRED)
 axis_library_id: (REQUIRED)
 axis_qa_prod: (REQUIRED)
+
+# OneClick
+oneclick_libid: (REQUIRED)
+oneclick_token: (REQUIRED)
+oneclick_logn_length: (REQUIRED)
