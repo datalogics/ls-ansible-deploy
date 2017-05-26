@@ -23,7 +23,7 @@
       "production_url" : "postgresql://{{ psql_username }}:{{ psql_password }}@{{ hostvars['localhost']['rds']['instance']['endpoint'] }}:5432/{{ psql_db_name }}"
     },
     "Elasticsearch" : {
-      "url" : "http://localhost:9200",
+      "url" : "http://{{ ec2_ip }}",
       "works_index" : "circulation-works"
     },
     "Metadata Wrangler" : {
