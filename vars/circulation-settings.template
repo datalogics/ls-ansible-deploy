@@ -49,6 +49,10 @@ psql_db_name: "scripts"
 psql_username: (REQUIRED)
 psql_password: (REQUIRED)
 
+# External links
+link_terms: ""
+link_privacy: ""
+
 # Vendor vars
 #############
 

@@ -47,6 +47,10 @@ psql_db_name: "circulation"
 psql_username: "simplified"
 psql_password: "password"
 
+# External links
+link_terms: "http://www.datalogics.com/products/eula/"
+link_privacy: "http://www.datalogics.com/privacy-policy/"
+
 # Vendor vars
 #############
 
