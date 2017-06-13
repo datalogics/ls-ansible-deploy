@@ -50,7 +50,7 @@ psql_username: (REQUIRED)
 psql_password: (REQUIRED)
 
 # External links
-link_terms: ""
+link_terms: "" # this may be referred to as terms of service or content license
 link_privacy: ""
 
 # Vendor vars

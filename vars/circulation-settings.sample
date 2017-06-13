@@ -48,7 +48,7 @@ psql_username: "simplified"
 psql_password: "password"
 
 # External links
-link_terms: "http://www.datalogics.com/products/eula/"
+link_terms: "http://www.datalogics.com/products/tos/" # this may be referred to as terms of service or content license
 link_privacy: "http://www.datalogics.com/privacy-policy/"
 
 # Vendor vars
