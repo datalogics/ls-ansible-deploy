@@ -79,4 +79,4 @@ axis_qa_prod: (REQUIRED)
 # OneClick
 oneclick_libid: (REQUIRED)
 oneclick_token: (REQUIRED)
-oneclick_logn_length: (REQUIRED)
+oneclick_loan_length: (REQUIRED)
