@@ -1,8 +1,8 @@
 ---
 - name: Write the config.json to the server
   template:
-    src: templates/config.j2
-    dest: "/home/ec2-user/config.json"
+    src: templates/config.json
+    dest: "/home/ec2-user"
     owner: ec2-user
     group: ec2-user
     mode: 0666
