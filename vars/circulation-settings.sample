@@ -29,6 +29,7 @@ db_task: "init" # init for initial deployment, migrate for version upgrade, igno
 # this is the value the SIMPLIFIED_DB_TASK environment variable will be set to. after starting the container
 # once with either the "init" or "migrate" option (as needed), this should be set back to "ignore". for now,
 # we'll need to modify the ECS task definition manually.
+config_location: "/etc/circulation/config.json"
 
 # AWS shared
 aws_region: "us-west-2"
