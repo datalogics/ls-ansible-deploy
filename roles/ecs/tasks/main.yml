@@ -11,22 +11,24 @@
       - containerPort: 80
         hostPort: 80
       mountPoints:
-      - containerPath: "/etc/circulation/config.json"
+      - containerPath: "{{ config_location }}"
         sourceVolume: CM-config
       environment:
       - name: "SIMPLIFIED_DB_TASK"
         value: "{{ db_task }}"
+      - name: "SIMPLIFIED_CONFIGURATION_FILE"
+        value: "{{ config_location }}"
     - name: circ-scripts
       cpu: 300
       essential: true
       image: "{{ docker_scripts }}:{{ docker_scripts_tag }}"
       memoryReservation: 256
       mountPoints:
-      - containerPath: "/etc/circulation/config.json"
+      - containerPath: "{{ config_location }}"
         sourceVolume: CM-config
       environment:
-      - name: "SIMPLIFIED_DB_TASK"
-        value: "{{ db_task }}"
+      - name: "SIMPLIFIED_CONFIGURATION_FILE"
+        value: "{{ config_location }}"
     volumes:
     - name: CM-config
       host: 
