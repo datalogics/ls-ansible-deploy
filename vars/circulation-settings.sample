@@ -7,7 +7,7 @@ admin_email: "admin@datalogics.com"
 simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
 simplye_instance_name: "PublicLibrary" # e.g. "FooPublicLibrary"
 simplye_environment: "production"
-simplye_hostname: "http://library.datalogics.com" # e.g. "http://cm.library.com" or "http://111.222.333.444"
+simplye_hostname: "http://library.datalogics.com" # e.g. "http://cm.library.com" or "http://111.222.333.444"; no "groups" at the end
 
 # Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
 auth_server: ""
@@ -25,7 +25,10 @@ docker_scripts_tag : "1.1.22"
 docker_deploy: "nypl/circ-deploy"
 docker_deploy_tag: "1.1.22"
 
-initialize_db: "true" # this should be true only when using this database and Elasticsearch instance for the first time
+db_task: "init" # init for initial deployment, migrate for version upgrade, ignore for all other cases
+# this is the value the SIMPLIFIED_DB_TASK environment variable will be set to. after starting the container
+# once with either the "init" or "migrate" option (as needed), this should be set back to "ignore". for now,
+# we'll need to modify the ECS task definition manually.
 
 # AWS shared
 aws_region: "us-west-2"
@@ -36,6 +39,8 @@ ec2_instance_type: "t2.medium"
 ec2_image: "ami-62d35c02"
 ec2_volume_size: 32
 ec2_subnet_ids: ["subnet-df64b2a8","subnet-a05ea9f9","subnet-17e75472"] # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
+# until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces
+# it should be a list in the form ["subnet1","subnet2","subnet3"]
 
 # AWS RDS & PostgreSQL
 rds_instance_type: "db.t2.medium"
