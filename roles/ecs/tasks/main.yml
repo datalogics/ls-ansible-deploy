@@ -27,8 +27,6 @@
       - containerPath: "{{ config_location }}"
         sourceVolume: CM-config
       environment:
-      - name: "SIMPLIFIED_DB_TASK"
-        value: "{{ db_task }}"
       - name: "SIMPLIFIED_CONFIGURATION_FILE"
         value: "{{ config_location }}"
     volumes:
