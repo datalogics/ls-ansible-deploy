@@ -56,30 +56,3 @@ psql_password: "password"
 link_terms: "http://www.datalogics.com/products/tos/" # this may be referred to as terms of service or content license
 link_privacy: "http://www.datalogics.com/privacy-policy/"
 
-# Vendor vars
-#############
-
-# Overdrive
-od_client_key: ""
-od_client_secret: ""
-od_website_id: ""
-od_library_id: ""
-od_ils_name: ""
-od_cname_url: ""
-od_default_loan_period: ""
-
-# 3M/Cloud Library
-threem_library_id: ""
-threem_account_id: ""
-threem_account_key : ""
-
-# Axis360
-axis_username: ""
-axis_password: ""
-axis_library_id: ""
-axis_qa_prod: ""
-
-# OneClick
-oneclick_libid: ""
-oneclick_token: ""
-oneclick_loan_length: ""
