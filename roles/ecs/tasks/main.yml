@@ -16,6 +16,8 @@
       environment:
       - name: "SIMPLIFIED_DB_TASK"
         value: "{{ db_task }}"
+      - name: "SIMPLIFIED_CONFIGURATION_FILE"
+        value: "/etc/circulation/config.json"
     - name: circ-scripts
       cpu: 300
       essential: true
@@ -25,8 +27,8 @@
       - containerPath: "/etc/circulation/config.json"
         sourceVolume: CM-config
       environment:
-      - name: "SIMPLIFIED_DB_TASK"
-        value: "{{ db_task }}"
+      - name: "SIMPLIFIED_CONFIGURATION_FILE"
+        value: "/etc/circulation/config.json"
     volumes:
     - name: CM-config
       host: 
