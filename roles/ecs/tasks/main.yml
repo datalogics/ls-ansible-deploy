@@ -18,6 +18,8 @@
         value: "{{ db_task }}"
       - name: "SIMPLIFIED_CONFIGURATION_FILE"
         value: "/etc/circulation/config.json"
+      - name: "SIMPLIFIED_PRODUCTION_DATABASE"
+        value: "postgresql://{{ psql_username }}:{{ psql_password }}@{{ rds.instance.endpoint }}:5432/{{ psql_db_name }}"
     - name: circ-scripts
       cpu: 300
       essential: true
@@ -29,6 +31,8 @@
       environment:
       - name: "SIMPLIFIED_CONFIGURATION_FILE"
         value: "/etc/circulation/config.json"
+      - name: "SIMPLIFIED_PRODUCTION_DATABASE"
+        value: "postgresql://{{ psql_username }}:{{ psql_password }}@{{ rds.instance.endpoint }}:5432/{{ psql_db_name }}"
     volumes:
     - name: CM-config
       host: 
