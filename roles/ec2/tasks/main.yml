@@ -36,6 +36,19 @@
   register: ec2_sg
 - debug: var=ec2_sg.group_id
 
+- name: Get a list of subnets to use in EC2 creation
+  ec2_vpc_subnet_facts:
+    region: "{{ aws_region }}"
+  register: subnet_facts
+
+- name: Display all variables/facts - use -vvv to see output
+  debug:
+    var: hostvars['localhost']
+    verbosity: 3
+
+- set_fact:
+    subnet_ids: "[ '{{ subnet_facts.subnets[0].id }}', '{{ subnet_facts.subnets[1].id }}', '{{ subnet_facts.subnets[2].id }}']"
+
 - name: Create a new server instance in AWS EC2 if none exist with tag "{{ simplye_role }}-{{ simplye_instance_name }}"
   local_action:
     module: ec2
@@ -50,7 +63,7 @@
     key_name: "{{ simplye_instance_name }}"
     group_id: "{{ ec2_sg.group_id }}"
     image: "{{ ec2_image }}"
-    vpc_subnet_id: "{{ ec2_subnet_ids|random }}"
+    vpc_subnet_id: "{{ subnet_ids|random }}"
     assign_public_ip: yes
     instance_profile_name: ecsInstanceRole
     user_data: |

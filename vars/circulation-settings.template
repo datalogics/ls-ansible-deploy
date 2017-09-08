@@ -34,26 +34,13 @@ aws_region: "us-west-2"
 ec2_instance_type: "t2.large"
 ec2_image: "ami-62d35c02"
 ec2_volume_size: 32
-ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
-# until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces
-# it should be a list in the form ["subnet1","subnet2","subnet3"]
 
 # AWS RDS & PostgreSQL
 rds_instance_type: "db.t2.medium"
 rds_db_engine: "postgres"
 rds_size: 100
-rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
+rds_subnet: "simplye"
 
-psql_db_name: "simplified-circulation"
-psql_username: (REQUIRED)
+psql_db_name: "circulation"
+psql_username: "simplified"
 psql_password: (REQUIRED)
-
-# External links
-link_terms: (REQUIRED) # this may be referred to as terms of service or content license
-link_privacy: (REQUIRED)
-
-# Vendor ID
-vid_id: "NYPL"
-vid_url: (REQUIRED)
-vid_short_name: (REQUIRED)
-vid_secret: (REQUIRED)

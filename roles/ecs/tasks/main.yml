@@ -10,14 +10,9 @@
       portMappings:
       - containerPort: 80
         hostPort: 80
-      mountPoints:
-      - containerPath: "/etc/circulation/config.json"
-        sourceVolume: CM-config
       environment:
       - name: "SIMPLIFIED_DB_TASK"
         value: "{{ db_task }}"
-      - name: "SIMPLIFIED_CONFIGURATION_FILE"
-        value: "/etc/circulation/config.json"
       - name: "SIMPLIFIED_PRODUCTION_DATABASE"
         value: "postgresql://{{ psql_username }}:{{ psql_password }}@{{ rds.instance.endpoint }}:5432/{{ psql_db_name }}"
     - name: circ-scripts
@@ -25,18 +20,9 @@
       essential: true
       image: "{{ docker_scripts }}:{{ docker_scripts_tag }}"
       memoryReservation: 256
-      mountPoints:
-      - containerPath: "/etc/circulation/config.json"
-        sourceVolume: CM-config
       environment:
-      - name: "SIMPLIFIED_CONFIGURATION_FILE"
-        value: "/etc/circulation/config.json"
       - name: "SIMPLIFIED_PRODUCTION_DATABASE"
         value: "postgresql://{{ psql_username }}:{{ psql_password }}@{{ rds.instance.endpoint }}:5432/{{ psql_db_name }}"
-    volumes:
-    - name: CM-config
-      host: 
-        sourcePath: "/home/ec2-user/config.json"
     state: present
     region: "{{ aws_region }}"
     family: "{{ simplye_role }}-{{ simplye_instance_name }}-tdef"
