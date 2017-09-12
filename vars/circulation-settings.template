@@ -1,21 +1,10 @@
 # Ansible control machine
-admin_ip: (REQUIRED) # the public IP of the machine from which you're running this playbook
 git_ssh_priv_key: ~/.ssh/id_rsa
 
 # SimplyE instance
-admin_email: (REQUIRED)
 simplye_role: "circulation"
 simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
-simplye_hostname: (REQUIRED) # e.g. "http://cm.library.com" or "http://111.222.333.444"; no "groups" at the end
-
-# Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
-auth_server: (REQUIRED)
-auth_port: "80"
-auth_username: (REQUIRED)
-auth_password: (REQUIRED)
-auth_location: (REQUIRED)
-auth_separator: (REQUIRED)
 
 # Docker information
 docker_scripts: "nypl/circ-scripts"
