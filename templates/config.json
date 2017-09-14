@@ -19,11 +19,17 @@
     }
   },
   "integrations" : {
+    "Adobe Vendor ID" : {
+       "vendor_id" : "{{ vid_id }}",
+       "library_uri" : "{{ vid_url }}",
+       "library_short_name": "{{ vid_short_name }}",
+       "authdata_secret" : "{{ vid_secret }}"
+    },
     "Postgres" : {
       "production_url" : "postgresql://{{ psql_username }}:{{ psql_password }}@{{ hostvars['localhost']['rds']['instance']['endpoint'] }}:5432/{{ psql_db_name }}"
     },
     "Elasticsearch" : {
-      "url" : "http://ELASTIC_IP_GOES_HERE",
+      "url" : "",
       "works_index" : "circulation-works"
     },
     "Metadata Wrangler" : {
@@ -34,33 +40,6 @@
     },
     "Circulation Manager" : {
       "url" : "{{ simplye_hostname }}"
-    },
-    "Overdrive" : {
-      "client_key" : "{{ od_client_key }}",
-      "client_secret" : "{{ od_client_secret }}",
-      "website_id" : "{{ od_website_id }}",
-      "library_id" : "{{ od_library_id }}",
-      "ils_name": "{{ od_ils_name }}",
-      "cname_url": "{{ od_cname_url }}",
-      "default_loan_period": "{{ od_default_loan_period }}"
-    },
-    "3M" : {
-      "library_id" : "{{ threem_library_id }}",
-      "account_id" : "{{ threem_account_id }}",
-      "account_key" : "{{ threem_account_key }}"
-    },
-    "Axis 360" : {
-      "username" : "{{ axis_username }}",
-      "password" : "{{ axis_password }}",
-      "library_id" : "{{ axis_library_id }}",
-      "server" : "{{ axis_qa_prod }}"
-    },
-    "OneClick" : {
-      "library_id" : "{{ oneclick_libid }}",
-      "remote_stage" : "production",
-      "url" : "https://api.oneclickdigital.com/",
-      "basic_token" : "{{ oneclick_token }}",
-      "ebook_loan_length" : "{{ oneclick_loan_length }}"
     }
   },
   "links" :  {

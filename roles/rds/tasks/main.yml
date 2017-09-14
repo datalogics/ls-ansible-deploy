@@ -12,6 +12,14 @@
   register: rds_sg
 - debug: var=rds_sg.group_id
 
+- name: Create an RDS subnet
+  rds_subnet_group:
+    state: present
+    region: "{{ aws_region }}"
+    name: "{{ rds_subnet }}"
+    description: "RDS subnet for SimplyE"
+    subnets: "{{ subnet_ids }}"
+
 - name: Create a PostgreSQL database in AWS RDS
   local_action:
     module: rds
