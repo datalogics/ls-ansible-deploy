@@ -14,7 +14,7 @@
     gpgcheck: yes
 
 - name: Install yum package dependencies
-  yum: name=java-1.8.0-openjdk.x86_64,cairo,elasticsearch,libffi-devel,openssl-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip state=latest
+  yum: name=java-1.8.0-openjdk.x86_64,cairo,elasticsearch,libffi-devel,openssl-devel,python27,python27-devel,python-nose,python-sqlalchemy,python-pip,postgresql state=latest
 
 - name: Copy the elasticsearch.yml file to the server
   copy:

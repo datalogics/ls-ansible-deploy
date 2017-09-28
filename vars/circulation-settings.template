@@ -1,34 +1,20 @@
 # Ansible control machine
-admin_ip: (REQUIRED) # e.g. your local public IP
 git_ssh_priv_key: ~/.ssh/id_rsa
 
 # SimplyE instance
-admin_email: (REQUIRED)
-simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
+simplye_role: "circulation"
 simplye_instance_name: (REQUIRED) # e.g. "FooPublicLibrary"
 simplye_environment: "production"
-simplye_hostname: (REQUIRED) # e.g. "http://cm.library.com" or "http://111.222.333.444"; no "groups" at the end
-
-# Note that these settings for a SIP ILS; a III/Millenium-type ILS will need to be configured manually
-auth_server: ""
-auth_port: "80"
-auth_username: ""
-auth_password: ""
-auth_location: ""
-auth_separator: ""
-
-simplye_repo: "git@github.com:NYPL-Simplified/circulation.git"
 
 # Docker information
 docker_scripts: "nypl/circ-scripts"
-docker_scripts_tag : "latest"
+docker_scripts_tag : (REQUIRED)
 docker_deploy: "nypl/circ-deploy"
-docker_deploy_tag: "latest"
+docker_deploy_tag: (REQUIRED)
 
-db_task: "init" # init for initial deployment, migrate for version upgrade, ignore for all other cases
-# this is the value the SIMPLIFIED_DB_TASK environment variable will be set to. after starting the container
-# once with either the "init" or "migrate" option (as needed), this should be set back to "ignore". for now,
-# we'll need to modify the ECS task definition manually.
+db_task: "ignore" # init for initial deployment, migrate for version upgrade, ignore for all other cases
+# this is the value the SIMPLIFIED_DB_TASK environment variable will be set to
+# normally, we'd set this to "init" for a new deployment, but automatic initialization and migration is busted
 
 # AWS shared
 aws_region: "us-west-2"
@@ -37,22 +23,13 @@ aws_region: "us-west-2"
 ec2_instance_type: "t2.large"
 ec2_image: "ami-62d35c02"
 ec2_volume_size: 32
-ec2_subnet_ids: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
-# until it's automated, these can be found in EC2 -> Network & Security -> Network Interfaces
-# it should be a list in the form ["subnet1","subnet2","subnet3"]
 
 # AWS RDS & PostgreSQL
 rds_instance_type: "db.t2.medium"
 rds_db_engine: "postgres"
 rds_size: 100
-rds_subnet: (REQUIRED) # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
-# this can simply be "default" for now
+rds_subnet: "simplye"
 
-psql_db_name: "scripts"
-psql_username: (REQUIRED)
+psql_db_name: "circulation"
+psql_username: "simplified"
 psql_password: (REQUIRED)
-
-# External links
-link_terms: "" # this may be referred to as terms of service or content license
-link_privacy: ""
-

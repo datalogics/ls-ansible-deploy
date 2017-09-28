@@ -1,11 +1,17 @@
 ---
-- name: Write the config.json to the server
-  template:
-    src: templates/config.json
-    dest: "/home/ec2-user/"
-    owner: ec2-user
-    group: ec2-user
-    mode: 0666
+- name: Copy the logs cat script to host
+  copy:
+    src: files/logs.sh
+    dest: /home/ec2-user/logs.sh
+    mode: 0775
+  become: yes
+
+- name: Copy the bash start script to host
+  copy:
+    src: files/bash.sh
+    dest: /home/ec2-user/bash.sh
+    mode: 0775
+  become: yes
 
 - local_action:
     module: ec2
