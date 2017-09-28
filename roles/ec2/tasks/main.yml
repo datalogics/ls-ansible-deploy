@@ -45,6 +45,8 @@
     instance_type: "{{ ec2_instance_type }}"
     exact_count: 1
     count_tag:
+      Environment: "{{ simplye_environment }}"
+      Type: "{{ simplye_role }}"
       Name: "{{ simplye_role }}-{{ simplye_instance_name }}"
     instance_tags: '{"Name":"{{ simplye_role }}-{{ simplye_instance_name }}","Type":"{{ simplye_role }}","Environment":"{{ simplye_environment }}"}'
     key_name: "{{ simplye_instance_name }}"
