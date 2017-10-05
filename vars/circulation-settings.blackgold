@@ -1,0 +1,61 @@
+# Ansible control machine
+admin_ip: 38.98.172.37 # e.g. your local public IP
+git_ssh_priv_key: ~/.ssh/id_rsa
+
+# SimplyE instance
+admin_email: "mtheobald@blackgold.org"
+simplye_role: "circulation" # can be one of: "circulation" "content" "metadata"
+simplye_instance_name: "blackgold" # e.g. "FooPublicLibrary"
+simplye_environment: "production"
+simplye_hostname: "http://bgc.simplye-ca.org/"
+
+auth_server: "72.29.170.211"
+auth_port: "5001"
+auth_username: "3MLogin"
+auth_password: "3MLogin"
+auth_location: "1"
+auth_separator: "|"
+
+# Docker information
+docker_scripts: "nypl/circ-scripts" 
+docker_scripts_tag : "2.0.2"
+docker_deploy: "datalogics/circ-deploy"
+docker_deploy_tag: "2.0.2"
+
+db_task: "ignore" # this should be true only when using this database and Elasticsearch instance for the first time
+
+# AWS shared
+aws_region: "us-west-2"
+aws_zones: ["us-west-2a","us-west-2b","us-west-2c"]
+
+# AWS EC2
+ec2_instance_type: "t2.medium"
+ec2_image: "ami-62d35c02"
+ec2_volume_size: 32
+ec2_subnet_ids: ["subnet-5499830c","subnet-5d8ce73a","subnet-1e4cc157"] # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
+
+# AWS RDS & PostgreSQL
+rds_instance_type: "db.t2.medium"
+rds_db_engine: "postgres"
+rds_size: 100
+rds_subnet: "rds-subnet" # @ToDo: automate this: http://docs.ansible.com/ansible/ec2_vpc_subnet_module.html
+
+psql_db_name: "circulation"
+psql_username: "simplified"
+psql_password: "password"
+
+# External links
+link_terms: "" # this may be referred to as terms of service or content license
+link_privacy: ""
+
+# Vendor vars
+#############
+
+# Overdrive
+od_client_key: "BLACKGOLDCA"
+od_client_secret: "GYUHmbUVvdeMr1IinOBKrnxMXdTFtuPr"
+od_website_id: "240"
+od_library_id: "1352"
+od_ils_name: "blackgold"
+od_cname_url: ""
+od_default_loan_period: ""
