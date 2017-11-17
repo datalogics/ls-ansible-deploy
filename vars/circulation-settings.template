@@ -20,7 +20,7 @@ db_task: "ignore" # init for initial deployment, migrate for version upgrade, ig
 aws_region: "us-west-2"
 
 # AWS EC2
-ec2_instance_type: "t2.large"
+ec2_instance_type: "t2.medium"
 ec2_image: "ami-62d35c02"
 ec2_volume_size: 32
 
